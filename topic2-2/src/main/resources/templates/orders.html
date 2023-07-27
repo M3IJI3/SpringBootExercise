@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.w3.org/1999/xhtml"
+                layout:decorate="layouts/defaultLayout">
+<head>
+    <title>Orders</title>
+</head>
+<body>
+    <div layout:fragment="content">
+
+<!--        insert title -->
+        <h2 th:text="${title}"></h2>
+
+<!--        insert table for orders-->
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">OrderNO.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Qty</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}">ID</td>
+                <td th:text="${order.orderNo}">OrderNo.</td>
+                <td th:text="${order.productName}">Name</td>
+                <td th:text="${order.Price}">Price</td>
+                <td th:text="${order.quantity}">Qty</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
