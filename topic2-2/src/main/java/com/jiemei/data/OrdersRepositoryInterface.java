@@ -12,5 +12,4 @@ public interface OrdersRepositoryInterface extends CrudRepository<OrderEntity, L
 
     List<OrderEntity> findByProductNameContainingIgnoreCase(String searchTerm);
 
-
 }

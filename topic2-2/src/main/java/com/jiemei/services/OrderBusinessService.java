@@ -21,7 +21,7 @@ import java.util.List;
 public class OrderBusinessService implements OrderBusinessServiceInterface {
 
 //    @Resource
-    @Autowired
+    @Resource
     OrdersDataAccessInterface<OrderModel> orderDAO;
 
     @Override
