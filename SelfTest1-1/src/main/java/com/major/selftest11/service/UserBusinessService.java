@@ -20,26 +20,26 @@ public class UserBusinessService implements UserBusinessServiceInterface{
 
     @Override
     public User getByEmployeeID(long id) {
-        return null;
+        return userDAO.getByEmployeeID(id);
     }
 
     @Override
     public List<User> searchUser(String searchTerm) {
-        return null;
+        return userDAO.searchUser(searchTerm);
     }
 
     @Override
     public long addNewUser(User newUser) {
-        return 0;
+        return userDAO.addNewUser(newUser);
     }
 
     @Override
     public boolean deleteUser(long id) {
-        return false;
+        return userDAO.deleteUser(id);
     }
 
     @Override
     public User update(long id, User user) {
-        return null;
+        return userDAO.update(id, user);
     }
 }
