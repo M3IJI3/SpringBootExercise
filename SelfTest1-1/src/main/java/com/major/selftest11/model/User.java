@@ -8,8 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+    long employeeNO;
     String username;
     String password;
     int age;
-    double salary;
+    float salary;
 }
