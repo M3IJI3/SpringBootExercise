@@ -53,26 +53,26 @@ public class OrderDataService implements OrdersDataAccessInterface<OrderModel> {
 
     @Override
     public long addOne(OrderModel object) {
-//        long result = jdbcTemplate.update("insert into orders " +
-//                "(ORDER_NUMBER, PRODUCT_NAME, PRICE, QTY) values (?,?,?,?)",
-//                object.getOrderNo(),
-//                object.getProductName(),
-//                object.getPrice(),
-//                object.getQuantity());
-        SimpleJdbcInsert simpleInsert = new SimpleJdbcInsert(jdbcTemplate);
-        simpleInsert.withTableName("ORDERS").usingGeneratedKeyColumns("ID");
+        long result = jdbcTemplate.update("insert into orders " +
+                "(ORDER_NUMBER, PRODUCT_NAME, PRICE, QTY) values (?,?,?,?)",
+                object.getOrderNo(),
+                object.getProductName(),
+                object.getPrice(),
+                object.getQuantity());
+//        SimpleJdbcInsert simpleInsert = new SimpleJdbcInsert(jdbcTemplate);
+//        simpleInsert.withTableName("ORDERS").usingGeneratedKeyColumns("ID");
+//
+//        // create a map of the column names
+//        Map<String, Object> parameters =  new HashMap<>();
+//
+//        parameters.put("ORDER_NUMBER", object.getOrderNo());
+//        parameters.put("PRODUCT_NAME", object.getProductName());
+//        parameters.put("PRICE", object.getPrice());
+//        parameters.put("QTY", object.getQuantity());
+//
+//        Number result =  simpleInsert.executeAndReturnKey(parameters);
 
-        // create a map of the column names
-        Map<String, Object> parameters =  new HashMap<>();
-
-        parameters.put("ORDER_NUMBER", object.getOrderNo());
-        parameters.put("PRODUCT_NAME", object.getProductName());
-        parameters.put("PRICE", object.getPrice());
-        parameters.put("QTY", object.getQuantity());
-
-        Number result =  simpleInsert.executeAndReturnKey(parameters);
-
-        return result.longValue();
+        return result;
     }
 
     @Override

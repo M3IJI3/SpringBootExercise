@@ -11,5 +11,4 @@ public interface OrdersRepositoryInterface extends CrudRepository<OrderEntity, L
     // already implies that we will use save, findall, findbyid deletebyid, etc.
 
     List<OrderEntity> findByProductNameContainingIgnoreCase(String searchTerm);
-
 }

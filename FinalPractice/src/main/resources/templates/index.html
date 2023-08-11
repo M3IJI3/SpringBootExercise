@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="layouts/defaultLayout">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Index Page</title>
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">-->
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <h1 class="text-center mt-3">Customer Information</h1>
+
+    <h3 class="text-center mt-3" th:text="${warning}" style="color: red"></h3>
+
+    <p>The following are customer savings records.</p>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">CustomerNO</th>
+            <th scope="col">Name</th>
+            <th scope="col">Deposit</th>
+            <th scope="col">Year(s)</th>
+            <th scope="col">Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customerModel : ${customerModels}">
+            <th th:text="${customerModel.getCustno()}"></th>
+            <td th:text="${customerModel.getCustname()}"></td>
+            <td th:text="${customerModel.getCustdep()}"></td>
+            <td th:text="${customerModel.getNyears()}"></td>
+            <td th:text="${customerModel.getSavtype()}"></td>
+            <td>
+                <div class="d-flex">
+                    <form th:action="@{/index/editform}" th:object="${customerModel}" method="get">
+                        <input type="hidden" name="custno" th:value="${customerModel.getCustno()}">
+                        <input type="hidden" name="custname" th:value="${customerModel.getCustname()}">
+                        <input type="hidden" name="custdep" th:value="${customerModel.getCustdep()}">
+                        <input type="hidden" name="nyears" th:value="${customerModel.getNyears()}">
+                        <input type="hidden" name="savetype" th:value="${customerModel.getSavtype()}">
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </form>
+                    <form class="mx-2" action="">
+                        <button type="button" class="btn btn-warning">Delete</button>
+                    </form>
+                </div>
+
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary">Projected Investment</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <form th:action="@{/index/form}" method="get">
+        <button type="submit" class="btn btn-success btn-lg">Add</button>
+    </form>
+
+</div>
+</body>
+</html>

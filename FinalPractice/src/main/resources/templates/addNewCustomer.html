@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="layouts/defaultLayout">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="container mt-3 mb-3">
+    <h1 class="mb-4">Add New Customer</h1>
+    <form th:action="@{/index/add}" method="post" th:object="${newCustomer}">
+      <div class="mb-3">
+        <label for="customerNumberInput" class="form-label">Customer Number</label>
+        <input th:field="*{custno}" type="text" class="form-control" id="customerNumberInput" aria-describedby="orderNumberHelp" required>
+        <div id="customerNumberHelp" class="form-text">Invent a number for this order.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="customerNameInput" class="form-label">Customer Name</label>
+        <input th:field="*{custname}" type="text" class="form-control" id="customerNameInput" aria-describedby="orderNameHelp" required>
+        <div id="customerNameHelp" class="form-text">Invent a name for this order.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="customerDepositInput" class="form-label">Deposit</label>
+        <input th:field="*{custdep}" type="text" class="form-control" id="customerDepositInput" aria-describedby="orderPriceHelp" required>
+        <div id="customerDepositHelp" class="form-text">Invent a balance for this order.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="YearsInput" class="form-label">Number of Years</label>
+        <input th:field="*{nyears}" type="text" class="form-control" id="YearsInput" aria-describedby="orderQuantityHelp" required>
+        <div id="YearsHelp" class="form-text">Invent years for this order.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="disabledSelect" class="form-label">Select save menu</label>
+        <select th:field="*{savtype}" id="disabledSelect" class="form-select">
+          <option value="Saving">Saving</option>
+          <option value="Cheque">Cheque</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
