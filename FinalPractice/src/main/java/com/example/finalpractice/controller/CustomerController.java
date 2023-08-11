@@ -10,8 +10,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Controller
@@ -50,5 +52,25 @@ public class CustomerController {
         return "editCustomer";
     }
 
+    @PostMapping(path = "/edit")
+    public String editCustomer(CustomerModel customerModel)
+    {
+        customerBusinessService.updateCustomer(customerModel.getCustno(), customerModel);
+        return "redirect:/index/customer";
+    }
 
+    @PostMapping(path = "/delete")
+    public String deleteCustomer(CustomerModel customerModel)
+    {
+        customerBusinessService.deleteCustomer(customerModel);
+        return "redirect:/index/customer";
+    }
+
+    @GetMapping(path = "/search")
+    public String searchCustomer(Model model, @RequestParam(name = "keyword") String keyword)
+    {
+        List<CustomerModel> customerModels = customerBusinessService.getCustomerByName(keyword);
+        model.addAttribute("customerModels", customerModels);
+        return "index";
+    }
 }

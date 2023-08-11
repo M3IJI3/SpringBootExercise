@@ -2,6 +2,7 @@ package com.example.finalpractice.service;
 
 import com.example.finalpractice.model.CustomerModel;
 import com.example.finalpractice.repository.CustomerDAOInterface;
+import com.example.finalpractice.repository.CustomerRepository;
 import com.example.finalpractice.repository.CustomerRepositoryInterface;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,11 @@ public class CustomerBusinessService implements CustomerBusinessServiceInterface
     @Resource
     CustomerDAOInterface<CustomerModel> customerDAO;
 
+    public CustomerBusinessService(CustomerDAOInterface<CustomerModel> customerDAO)
+    {
+        this.customerDAO = customerDAO;
+    }
+
     @Override
     public List<CustomerModel> getAllCustomers() {
         return customerDAO.getAllCustomers();
@@ -26,18 +32,19 @@ public class CustomerBusinessService implements CustomerBusinessServiceInterface
     }
 
     @Override
-    public CustomerModel getCustomerByName(String custname) {
+    public List<CustomerModel> getCustomerByName(String custname) {
         return customerDAO.getCustomerByName(custname);
     }
 
     @Override
     public CustomerModel updateCustomer(String custid, CustomerModel customer) {
-        return null;
+        return customerDAO.updateCustomer(custid, customer);
     }
 
     @Override
-    public boolean deleteCustomer(String custid) {
-        return false;
+    public boolean deleteCustomer(CustomerModel customerModel) {
+        customerDAO.deleteCustomer(customerModel);
+        return true;
     }
 
     @Override

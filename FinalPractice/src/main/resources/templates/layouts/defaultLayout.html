@@ -11,8 +11,22 @@
     <div th:replace="layouts/commonHeader :: header">my header goes here</div>
 
     <div layout:fragment="content"></div>
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
+<script>
+    const deleteButtons = document.querySelectorAll('.delete-button');
+    const deleteForm = document.querySelectorAll('.delete-form');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const confirmed = window.confirm("Are you sure you want to delete this entry?");
+
+            if (confirmed) {
+                deleteForm.submit();
+            }
+        });
+    });
+</script>
 </html>

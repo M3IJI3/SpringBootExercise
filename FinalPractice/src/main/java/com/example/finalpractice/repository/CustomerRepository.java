@@ -46,27 +46,29 @@ public class CustomerRepository implements CustomerDAOInterface<CustomerModel> {
     }
 
     @Override
-    public CustomerModel getCustomerByName(String custname) {
-        CustomerEntity customerEntity = customerRepositoryInterface.findByCustnameIgnoreCase(custname);
-        return modelMapper.map(customerEntity, CustomerModel.class);
+    public List<CustomerModel> getCustomerByName(String custname) {
+        List<CustomerEntity> customerEntities =
+                customerRepositoryInterface.findAllByCustnameContainingIgnoreCase(custname);
+        List<CustomerModel> customerModels = new ArrayList<>();
+
+        for(CustomerEntity customerEntity : customerEntities)
+        {
+            customerModels.add(modelMapper.map(customerEntity, CustomerModel.class));
+        }
+        return customerModels;
     }
 
     @Override
     public CustomerModel updateCustomer(String custid, CustomerModel customer) {
-        List<CustomerModel> customerModels = getAllCustomers();
-        for(CustomerModel customerModel : customerModels)
-        {
-            if(customerModel.getCustno().equals(custid))
-            {
-
-            }
-        }
-        return null;
+        CustomerEntity customerEntity = modelMapper.map(customer, CustomerEntity.class);
+        CustomerEntity result = customerRepositoryInterface.save(customerEntity);
+        return modelMapper.map(result, CustomerModel.class);
     }
 
     @Override
-    public boolean deleteCustomer(String custid) {
-        return false;
+    public boolean deleteCustomer(CustomerModel customerModel) {
+        customerRepositoryInterface.delete(modelMapper.map(customerModel, CustomerEntity.class));
+        return true;
     }
 
     @Override

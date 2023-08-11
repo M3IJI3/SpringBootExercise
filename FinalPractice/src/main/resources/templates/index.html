@@ -44,8 +44,13 @@
                         <input type="hidden" name="savetype" th:value="${customerModel.getSavtype()}">
                         <button type="submit" class="btn btn-primary">Edit</button>
                     </form>
-                    <form class="mx-2" action="">
-                        <button type="button" class="btn btn-warning">Delete</button>
+                    <form class="mx-2 delete-form" th:action="@{/index/delete}" th:object="${customerModel}" method="post">
+                        <input type="hidden" name="custno" th:value="${customerModel.getCustno()}">
+                        <input type="hidden" name="custname" th:value="${customerModel.getCustname()}">
+                        <input type="hidden" name="custdep" th:value="${customerModel.getCustdep()}">
+                        <input type="hidden" name="nyears" th:value="${customerModel.getNyears()}">
+                        <input type="hidden" name="savetype" th:value="${customerModel.getSavtype()}">
+                        <button type="submit" class="btn btn-warning delete-button">Delete</button>
                     </form>
                 </div>
 

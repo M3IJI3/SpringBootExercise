@@ -7,8 +7,8 @@ import java.util.List;
 public interface CustomerBusinessServiceInterface {
     List<CustomerModel> getAllCustomers();
     CustomerModel getCustomerById(String custid);
-    CustomerModel getCustomerByName(String custname);
+    List<CustomerModel> getCustomerByName(String custname);
     CustomerModel updateCustomer(String custid, CustomerModel customer);
-    boolean deleteCustomer(String custid);
+    boolean deleteCustomer(CustomerModel customerModel);
     void addCustomer(CustomerModel customer);
 }

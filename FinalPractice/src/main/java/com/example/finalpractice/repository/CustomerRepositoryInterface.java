@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface CustomerRepositoryInterface extends CrudRepository<CustomerEntity, Long> {
-    CustomerEntity findByCustnameIgnoreCase(String custname);
+    List<CustomerEntity> findAllByCustnameContainingIgnoreCase(String custname);
 }
