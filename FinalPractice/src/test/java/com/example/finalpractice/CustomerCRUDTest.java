@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
-import org.junit.jupiter.api.Assertions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+
 public class CustomerCRUDTest {
     @InjectMocks
     private CustomerBusinessService customerBusinessService;
@@ -84,6 +83,7 @@ public class CustomerCRUDTest {
         Mockito.when(customerRepository.getAllCustomers()).thenReturn(customerModelList);
 
         List<CustomerModel> retrievedCustomers = customerBusinessService.getAllCustomers();
+        System.out.println(retrievedCustomers);
         assertNotNull(retrievedCustomers);
         assertEquals(2, retrievedCustomers.size());
 
@@ -95,10 +95,8 @@ public class CustomerCRUDTest {
         assertEquals("Steven Jobs", retrievedCustomer2.getCustname());
         assertEquals("Saving", retrievedCustomer2.getSavtype());
 
-        Mockito.verify(customerRepositoryInterface, times(1)).findAll();
-
+        Mockito.verify(customerRepository, times(1)).getAllCustomers();
     }
-
 
     @Test
     public void testDeleteCustomer()
